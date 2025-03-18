@@ -53,6 +53,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ASP-app  # Artifact 名稱
+          repository: sokatako/testazure  # 替換為正確的倉庫名稱
+          run-id: 13931212758  # 替換為正確的運行 ID
 
       - name: Login to Azure
         uses: azure/login@v2
