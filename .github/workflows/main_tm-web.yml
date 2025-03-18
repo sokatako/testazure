@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ASP-app  # Artifact 名稱
-          path: src/YourProject/published/**  # 確保路徑正確
+          path: src/YourProject/published/ASPtest  # 確保路徑正確
 
   deploy:
     runs-on: windows-latest
