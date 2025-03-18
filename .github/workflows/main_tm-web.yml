@@ -53,8 +53,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ASP-app  # Artifact 名稱
-          repository: sokatako/testazure  # 替換為正確的倉庫名稱
-          run-id: 13931212758  # 替換為正確的運行 ID
+          path: 'downloaded-artifact'  # 下載到指定目錄
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -69,4 +68,4 @@ jobs:
         with:
           app-name: 'TM-web'
           slot-name: 'Production'
-          package: 'src/YourProject/published'  # 指定正確的發布目錄
+          package: 'downloaded-artifact'  # 指定下載的 Artifact 目錄
