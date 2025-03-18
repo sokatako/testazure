@@ -15,19 +15,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup MSBuild path
-        uses: microsoft/setup-msbuild@v1.0.2
-
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.5
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.x'
 
       - name: Restore NuGet packages
-        run: nuget restore
+        run: dotnet restore
         working-directory: src/YourProject  # 指定正確的工作目錄
 
-      - name: Publish to folder
-        run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\" src/YourProject/YourSolution.sln
-        working-directory: .  # 確保工作目錄正確
+      - name: Build project
+        run: dotnet build --configuration Release
+        working-directory: src/YourProject  # 指定正確的工作目錄
+
+      - name: Publish project
+        run: dotnet publish -c Release -o published
+        working-directory: src/YourProject  # 指定正確的工作目錄
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
