@@ -26,10 +26,10 @@ jobs:
 
       - name: Restore NuGet packages
         run: nuget restore
-        working-directory: src/YourProject  # 指定正確的工作目錄
+        working-directory: src  # 指定正確的工作目錄
 
       - name: Publish to folder
-        run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\" src/YourProject/YourSolution.sln
+        run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\" src/YourSolution.sln
         working-directory: .  # 確保工作目錄正確
 
       - name: Upload artifact for deployment job
@@ -53,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ASP-app
-          path: 'src/YourProject/published/**'  # 指定正確的發布目錄
+          path: 'src/published/**'  # 指定正確的發布目錄
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -68,5 +68,5 @@ jobs:
         with:
           app-name: 'TM-web'
           slot-name: 'Production'
-          package: 'src/YourProject/published'  # 指定正確的發布目錄
+          package: 'src/published'  # 指定正確的發布目錄
           
