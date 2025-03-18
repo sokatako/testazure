@@ -35,8 +35,8 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: ASP-app
-          path: 'src/YourProject/published/**'  # 指定正確的發布目錄
+          name: ASP-app  # Artifact 名稱
+          path: 'src/YourProject/published/**'  # 確保路徑正確
 
   deploy:
     runs-on: windows-latest
