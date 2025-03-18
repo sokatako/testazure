@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ASP-app  # Artifact 名稱
-          path: 'src/YourProject/published/**'  # 確保路徑正確
+          path: src/YourProject/published/**  # 確保路徑正確
 
   deploy:
     runs-on: windows-latest
@@ -53,7 +53,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ASP-app  # Artifact 名稱
-          path: 'downloaded-artifact'  # 下載到指定目錄
+          path: downloaded-artifact  # 下載到指定目錄
 
       - name: Login to Azure
         uses: azure/login@v2
