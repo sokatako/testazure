@@ -21,16 +21,16 @@ jobs:
           dotnet-version: '6.x'
 
       - name: Restore NuGet packages
-        run: dotnet restore
-        working-directory: src/YourProject  # 指定正確的工作目錄
+        run: dotnet restore src/YourProject/YourSolution.sln
+        working-directory: .  # 確保工作目錄正確
 
       - name: Build project
-        run: dotnet build --configuration Release
-        working-directory: src/YourProject  # 指定正確的工作目錄
+        run: dotnet build --configuration Release src/YourProject/YourSolution.sln
+        working-directory: .  # 確保工作目錄正確
 
       - name: Publish project
-        run: dotnet publish -c Release -o published
-        working-directory: src/YourProject  # 指定正確的工作目錄
+        run: dotnet publish -c Release -o published src/YourProject/YourSolution.sln
+        working-directory: .  # 確保工作目錄正確
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
